@@ -10,11 +10,17 @@ import './index.css'; // Import the global styles
  */
 function TodoForm({ onAddTodo }) {
     const [text, setText] = useState('');
+    const [error, setError] = useState(null);
 
     const handleSubmit = (event) => {
         event.preventDefault();
+        if (!text.trim()) {
+            setError('Please enter a todo item');
+            return;
+        }
         onAddTodo({ id: Date.now(), text, completed: false });
         setText('');
+        setError(null);
     };
 
     return (
@@ -25,7 +31,8 @@ function TodoForm({ onAddTodo }) {
                 onChange={(event) => setText(event.target.value)}
                 placeholder="Add new todo"
             />
-            <button type="submit">Add</button>
+            {error && <div style={{ color: 'red' }}>{error}</div>}
+            <button type="submit" disabled={!text.trim()}>Add</button>
         </form>
     );
 }

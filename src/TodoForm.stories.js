@@ -31,9 +31,6 @@ const Template = (args) => {
 export const Default = Template.bind({});
 Default.args = {};
 
-export const WithInitialText = Template.bind({});
-WithInitialText.args = {};
-
 export const UpdatedText = Template.bind({});
 
 UpdatedText.play = async ({ canvasElement }) => {
